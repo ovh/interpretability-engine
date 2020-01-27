@@ -1,0 +1,40 @@
+stages:
+  - environment
+  - tests
+  - check
+
+prepare_environment:
+  stage: environment
+  tags:
+    - debian
+  script:
+    - make build ENV_VERSION=latest
+
+unit-tests:
+  stage: tests
+  image: interpretability-engine-environment
+  tags:
+    - docker-only
+  script:
+    - make unit-tests DEBUG=1
+
+integration-tests:
+  stage: tests
+  image: python:3.7.5-slim-buster
+  tags:
+    - docker-only
+  script: ./misc/integration-tests.sh
+
+benchmark-tests:
+  stage: tests
+  image: interpretability-engine-environment
+  tags:
+    - docker-only
+  script: make benchmark-tests
+
+check-code:
+  stage: check
+  image: interpretability-engine-environment
+  tags:
+    - docker-only
+  script: make check-code
