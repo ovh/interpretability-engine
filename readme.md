@@ -7,7 +7,7 @@ Interpret your black-box model deployed in [Serving Engine](https://docs.ovh.com
 ## Installation
 
 ```
-pip3 install .
+pip3 install interpretability-engine
 ```
 
 ## Usage
