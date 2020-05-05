@@ -20,33 +20,46 @@ all: build tests
 
 build:
 ifdef DOCKER
-	docker build --build-arg "ENGINE_VERSION=$(ENGINE_VERSION)" -t interepretability-engine-environment:$(ENV_VERSION) .
+	docker build --build-arg "ENGINE_VERSION=$(ENGINE_VERSION)" -t interpretability-engine-environment:$(ENV_VERSION) .
 endif
+
+build-deploy:
+ifdef DOCKER
+	docker build --build-arg "ENGINE_VERSION=$(ENGINE_VERSION)" -f build.Dockerfile -t interpretability-engine-deploy-environment:$(ENV_VERSION) .
+endif
+
 
 tests: check-code unit-tests integration-tests
 
 check-code: build
 ifdef DOCKER
-	docker run -v $$(pwd):/app:ro --entrypoint /bin/bash  -t interepretability-engine-environment:$(ENV_VERSION) ./misc/check-code.sh
+	docker run -v $$(pwd):/app:ro --entrypoint /bin/bash  -t interpretability-engine-environment:$(ENV_VERSION) ./misc/check-code.sh
 else
 	./misc/check-code.sh
 endif
 
 unit-tests: build
 ifdef DOCKER
-	docker run -v $$(pwd):/app:ro --entrypoint /bin/bash -t interepretability-engine-environment:$(ENV_VERSION) ./misc/unit-tests.sh $(PYTEST_DEBUG) $(SPECIFIC_TEST)
+	docker run -v $$(pwd):/app:ro --entrypoint /bin/bash -t interpretability-engine-environment:$(ENV_VERSION) ./misc/unit-tests.sh $(PYTEST_DEBUG) $(SPECIFIC_TEST)
 else
 	./misc/unit-tests.sh $(PYTEST_DEBUG) $(SPECIFIC_TEST)
 endif
 
 integration-tests: build
 ifdef DOCKER
-	docker run -v $$(pwd):/app:ro --entrypoint /bin/bash -w /app -t interepretability-engine-environment:$(ENV_VERSION) ./misc/integration-tests.sh
+	docker run -v $$(pwd):/app:ro --entrypoint /bin/bash -w /app -t interpretability-engine-environment:$(ENV_VERSION) ./misc/integration-tests.sh
 else
 	./misc/integration-tests.sh
 endif
 
 interpretability-engine-environment:
 ifdef DOCKER
-	docker run -v /tmp/unsecure-share:/tmp/unsecure-share -v $$(pwd):/app:ro --entrypoint bash -ti interepretability-engine-environment:$(ENV_VERSION)
+	docker run -v /tmp/unsecure-share:/tmp/unsecure-share -v $$(pwd):/app:ro --entrypoint bash -ti interpretability-engine-environment:$(ENV_VERSION)
+endif
+
+deploy: build-deploy
+ifdef DOCKER
+	docker run -v $$(pwd):/app -e TWINE_USERNAME=$(TWINE_USERNAME) -e TWINE_PASSWORD=$(TWINE_PASSWORD) -t interpretability-engine-deploy-environment:$(ENV_VERSION) bash -c "python3 setup.py sdist bdist_wheel && twine upload dist/*"
+else
+	python3 setup.py sdist bdist_wheel && twine upload dist/*
 endif

@@ -7,7 +7,7 @@ Interpret your black-box model deployed in [Serving Engine](https://docs.ovh.com
 ## Installation
 
 ```
-pip3 install .
+pip3 install interpretability-engine
 ```
 
 ## Usage
@@ -21,3 +21,8 @@ interpretability-engine --token XXX --deployment-url https://localhost:8080 --sa
   - Type `interpretability-engine -h` or check `misc/integration-tests.sh` to have more information
 
 [PDP method](https://scikit-learn.org/stable/modules/partial_dependence.html)
+
+## License
+
+[3-clause BSD](./LICENSE)
+

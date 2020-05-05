@@ -1,14 +1,7 @@
-from distutils.core import setup
 from setuptools import find_packages, setup
 
-try: # for pip >= 10
-    from pip._internal.req import parse_requirements
-except ImportError: # for pip <= 9.0.3
-    from pip.req import parse_requirements
-
-install_reqs = parse_requirements('requirements.txt', session='hack')
-
-reqs = [str(ir.req) for ir in install_reqs]
+with open('requirements.txt') as f:
+    required = f.read().splitlines()
 
 setup(
     name='interpretability-engine',
@@ -17,8 +10,12 @@ setup(
     author_email='laurent.parmentier@corp.ovh.com',
     packages=find_packages(),
     scripts=['bin/interpretability-engine'],
-    url='https://gitlab.society-lbl.com/thesis/interpretability-engine',
-    description='An API to interepret Machine Learning models',
-    install_requires=reqs,
+    url='https://github.com/ovh/interpretability-engine',
+    description='Interpret Machine Learning black-box models deployed on Serving Engine',
+    classifiers=[
+        "Programming Language :: Python :: 3",
+        "License :: OSI Approved :: BSD License",
+    ],
+    install_requires=required,
     include_package_data=True
 )
