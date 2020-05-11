@@ -19,38 +19,42 @@ class PdpInterpretability(BaseInterpretability):
             grid_resolution
         )
 
-        return grid, values
+        return grid, values, features_indices
 
-    def _X_batch(self, X, features, grid):
+    def _X_batch(self, X, features_indices, grid):
         X_batch = []
 
         for new_values in grid:
             X_eval = X.copy()
 
-            for i, variable in enumerate(features):
+            for i, feature_index in enumerate(features_indices):
                 if hasattr(X_eval, 'iloc'):
-                    X_eval.iloc[:, variable] = new_values[i]
+                    X_eval.iloc[:, feature_index] = new_values[i]
                 else:
-                    X_eval[:, variable] = new_values[i]
+                    X_eval[:, feature_index] = new_values[i]
 
             X_batch.append(X_eval)
 
         return X_batch
 
     def _averaged_predict_batch(self, X_batch, model, one_api_call=True):
-        # NOTE one_api_call is faster but cost much memory for the customer
+        # NOTE one_api_call is faster but cost more memory for the customer
         averaged_predictions = []
 
         if one_api_call:
-            full_batch = []
             batches_len = []
             for batch in X_batch:
                 batches_len.append(len(batch))
-                full_batch += batch.tolist()
 
-            json = {model.input_name: full_batch}
+            json = {}
+
+            if model.number_of_inputs > 1:
+                for input_name in model.input_names:
+                    json[input_name] = [[batch[input_name].values.tolist()] for batch in X_batch]
+            else:
+                json[model.input_names[0]] = [batch.values.tolist() for batch in X_batch]
+
             raw_predictions = model.estimate(json=json)
-
             predictions = raw_predictions[model.output_name]
 
             start = 0
@@ -61,7 +65,14 @@ class PdpInterpretability(BaseInterpretability):
                 start = end
         else:
             for batch in X_batch:
-                json = {model.input_name: batch.tolist()}
+                json = {}
+
+                if model.number_of_inputs > 1:
+                    for input_name in model.input_names:
+                        json[input_name] = [[batch[input_name].values.tolist()]]
+                else:
+                    json[model.input_names[0]] = batch.values.tolist()
+
                 raw_predictions = model.estimate(json=json)
                 predictions = np.array(raw_predictions[model.output_name])
                 averaged_predictions.append(np.mean(predictions, axis=0))
@@ -69,9 +80,9 @@ class PdpInterpretability(BaseInterpretability):
         return averaged_predictions
 
     def interpret(self, model, X, features, percentiles=(0.05, 0.95), grid_resolution=100, one_api_call=True):  # pylint: disable=arguments-differ
-        grid, values = self._grid(X, features, percentiles, grid_resolution)
+        grid, values, features_indices = self._grid(X, features, percentiles, grid_resolution)
 
-        X_batch = self._X_batch(X, features, grid)
+        X_batch = self._X_batch(X, features_indices, grid)
 
         averaged_predictions = self._averaged_predict_batch(X_batch=X_batch, model=model, one_api_call=one_api_call)
 

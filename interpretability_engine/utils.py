@@ -36,4 +36,4 @@ def load_samples(samples_path, swift_container, swift_object):
 
     df = pd.read_csv(samples_path)
 
-    return df.to_numpy()
+    return df

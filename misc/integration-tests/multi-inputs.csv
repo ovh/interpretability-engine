@@ -1,0 +1,101 @@
+event_type,league,location,assist_method,event_team,situation
+1,'D1','9',1,'Hamburg SV',1.0
+1,'D1','15',1,'Borussia Dortmund',1.0
+1,'D1','9',1,'Borussia Dortmund',1.0
+1,'D1','15',0,'Borussia Dortmund',1.0
+1,'D1','15',0,'Hamburg SV',1.0
+1,'D1','3',1,'Borussia Dortmund',1.0
+1,'D1','15',0,'Borussia Dortmund',1.0
+1,'D1','3',2,'Borussia Dortmund',1.0
+1,'D1','9',1,'Borussia Dortmund',1.0
+1,'D1','3',1,'Borussia Dortmund',1.0
+1,'D1','11',0,'Borussia Dortmund',1.0
+1,'D1','15',0,'Hamburg SV',1.0
+1,'D1','9',2,'Borussia Dortmund',1.0
+1,'D1','11',1,'Borussia Dortmund',1.0
+1,'D1','3',1,'Borussia Dortmund',1.0
+1,'D1','13',0,'Borussia Dortmund',3.0
+1,'D1','15',3,'Borussia Dortmund',1.0
+1,'D1','16',0,'Hamburg SV',1.0
+1,'D1','3',2,'Hamburg SV',1.0
+1,'D1','3',2,'Hamburg SV',1.0
+1,'D1','3',0,'Hamburg SV',3.0
+1,'D1','9',1,'Hamburg SV',1.0
+1,'D1','15',0,'Borussia Dortmund',4.0
+1,'D1','17',0,'Borussia Dortmund',1.0
+1,'D1','3',1,'FC Augsburg',1.0
+1,'D1','11',1,'SC Freiburg',1.0
+1,'D1','15',0,'FC Augsburg',2.0
+1,'D1','15',1,'SC Freiburg',1.0
+1,'D1','9',1,'FC Augsburg',1.0
+1,'D1','13',2,'FC Augsburg',1.0
+1,'D1','15',0,'FC Augsburg',1.0
+1,'D1','15',1,'FC Augsburg',3.0
+1,'D1','15',0,'SC Freiburg',1.0
+1,'D1','7',1,'SC Freiburg',1.0
+1,'D1','15',1,'SC Freiburg',1.0
+1,'D1','3',2,'FC Augsburg',1.0
+1,'D1','3',2,'SC Freiburg',1.0
+1,'D1','15',1,'SC Freiburg',1.0
+1,'D1','3',2,'FC Augsburg',1.0
+1,'D1','15',1,'SC Freiburg',1.0
+1,'D1','3',2,'FC Augsburg',1.0
+1,'D1','3',2,'FC Augsburg',1.0
+1,'D1','15',3,'FC Augsburg',1.0
+1,'D1','8',1,'SC Freiburg',1.0
+1,'D1','9',4,'Werder Bremen',1.0
+1,'D1','12',0,'Werder Bremen',1.0
+1,'D1','15',1,'Werder Bremen',1.0
+1,'D1','3',1,'Werder Bremen',1.0
+1,'D1','15',1,'Kaiserslautern',1.0
+1,'D1','15',1,'Werder Bremen',1.0
+1,'D1','15',0,'Werder Bremen',4.0
+1,'D1','11',1,'Werder Bremen',1.0
+1,'D1','13',2,'Werder Bremen',3.0
+1,'D1','3',2,'Kaiserslautern',1.0
+1,'D1','15',1,'Kaiserslautern',1.0
+1,'D1','3',2,'Kaiserslautern',1.0
+1,'D1','9',1,'Werder Bremen',1.0
+1,'D1','13',0,'Werder Bremen',1.0
+1,'D1','15',1,'Werder Bremen',1.0
+1,'D1','15',3,'Werder Bremen',1.0
+1,'D1','15',0,'Werder Bremen',1.0
+1,'D1','15',0,'Kaiserslautern',1.0
+1,'D1','3',0,'Werder Bremen',1.0
+1,'D1','15',0,'Kaiserslautern',1.0
+1,'D1','16',0,'Werder Bremen',1.0
+1,'D1','13',2,'Werder Bremen',1.0
+1,'D1','13',2,'Werder Bremen',3.0
+1,'D1','13',2,'Werder Bremen',1.0
+1,'D1','3',1,'Werder Bremen',1.0
+1,'D1','9',1,'Kaiserslautern',1.0
+1,'D1','15',0,'Kaiserslautern',1.0
+1,'D1','13',3,'Kaiserslautern',1.0
+1,'F1','15',1,'Lorient',1.0
+1,'F1','10',2,'Lorient',1.0
+1,'F1','3',1,'Lorient',1.0
+1,'F1','15',3,'Paris Saint-Germain',1.0
+1,'F1','3',2,'Paris Saint-Germain',1.0
+1,'F1','10',2,'Lorient',2.0
+1,'F1','9',4,'Paris Saint-Germain',1.0
+1,'F1','15',1,'Paris Saint-Germain',1.0
+1,'F1','3',2,'Paris Saint-Germain',1.0
+1,'F1','15',1,'Paris Saint-Germain',1.0
+1,'F1','15',1,'Paris Saint-Germain',1.0
+1,'F1','15',3,'Lorient',3.0
+1,'F1','15',0,'Lorient',1.0
+1,'F1','3',2,'Lorient',1.0
+1,'F1','15',1,'Paris Saint-Germain',1.0
+1,'F1','15',0,'Lorient',4.0
+1,'F1','15',0,'Paris Saint-Germain',1.0
+1,'F1','15',0,'Paris Saint-Germain',1.0
+1,'F1','15',1,'Paris Saint-Germain',1.0
+1,'F1','15',1,'Lorient',1.0
+1,'F1','15',1,'Paris Saint-Germain',1.0
+1,'F1','12',2,'Valenciennes',1.0
+1,'F1','15',0,'Caen',1.0
+1,'F1','11',1,'Caen',1.0
+1,'F1','13',2,'Valenciennes',3.0
+1,'F1','15',1,'Caen',1.0
+1,'F1','7',2,'Valenciennes',1.0
+1,'F1','15',1,'Valenciennes',1.0

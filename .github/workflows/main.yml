@@ -1,0 +1,15 @@
+name: Tests
+on: [push, pull_request]
+jobs:
+  all-tests:
+    runs-on: ubuntu-latest
+    env:
+      DOCKER_LOGIN: ${{ secrets.DOCKER_LOGIN }}
+      DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+    steps:
+      - name: Checkout project
+        uses: actions/checkout@v2
+      - name: Run tests
+        run: |
+          echo "run tests"
+          make tests

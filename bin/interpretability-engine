@@ -61,9 +61,8 @@ def get_cli_args():
         '--features',
         action='store',
         nargs='+',
-        type=int,
         dest='features',
-        help="The indexes (or names, depend on how you export the model) for features used for interpretation."
+        help="The indexes (if you have one input) or names (if you have multiple inputs of shape 1) for features used for interpretation."
     )
 
     parser.add_argument(

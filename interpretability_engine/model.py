@@ -26,11 +26,17 @@ class Model():
         return self._number_of_features
 
     @property
-    def input_name(self):
+    def input_names(self):
         if self.number_of_inputs > 1:
-            raise Exception("Do not handle multiple inputs yet")
+            input_names = []
 
-        return self.model_description['inputs'][0]['name']
+            for input_node in self.model_description['inputs']:
+                if input_node['shape'][1] != 1:
+                    raise Exception("Do not handle a shape different than 1 when there is a multiple inputs")
+                input_names.append(input_node['name'])
+            return input_names
+
+        return [self.model_description['inputs'][0]['name']]
 
     @property
     def output_name(self):
@@ -74,6 +80,10 @@ class Model():
         self._number_of_features = self.number_of_inputs
 
     def check_input(self, X, features):
+        if X.shape[1] != self.number_of_features:
+            logging.error("Number of features passed from the samples (%d) differs than the one for the model (%d)", X.shape[1], self.number_of_features)
+            sys.exit(1)
+
         if self.number_of_inputs == 1:
             if len(features) > self.number_of_features:
                 logging.error("There is only one input and the number of features (%d) you are asking is greater than the shape (%d)", len(features), self.number_of_features)
@@ -83,10 +93,6 @@ class Model():
                 if isinstance(feature, int) and feature >= self.number_of_features:
                     logging.error("You asking the feature %d, the serving only has %d features (0 to %d)", feature, self.number_of_features, self.number_of_features - 1)
                     sys.exit(1)
-
-            if X.shape[1] != self.number_of_features:
-                logging.error("Number of features passed for the data (%d) differ than the one for the model (%d)", X.shape[1], self.number_of_features)
-                sys.exit(1)
 
         elif len(features) > len(self.model_description['inputs']):
             logging.error("The number of features (%d) you are asking is greater than the number of inputs (%d)", len(features), len(self.model_description['inputs']))

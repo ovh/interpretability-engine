@@ -11,11 +11,11 @@ test_model(){
 
   cp -r /app/misc/integration-tests/model-${model} /deployments/models
 
-  nohup /deployments/run-java.sh || exit 10 &
+  nohup /deployments/run-java.sh >/app/nohup.out &2>1 || exit 10 &
 
-  sleep 1s
+  sleep 3s
 
-  cat /root/nohup.out | grep -v "Exception" || exit 20
+  cat /app/nohup.out | grep -v "Exception" || exit 20
 
   interpretability-engine --token xxx --deployment-url http://localhost:8080 \
   --method ${method} \
@@ -35,4 +35,7 @@ test_model(){
 
 test_model "iris" "0" "pdp"
 
-test_model "boston" "0 1" "pdp"
+test_model "boston" "CRIM ZN" "pdp"
+
+# NOTE inspired from https://www.kaggle.com/secareanualin/football-events/data
+test_model "multi-inputs" "event_type assist_method" "pdp"
