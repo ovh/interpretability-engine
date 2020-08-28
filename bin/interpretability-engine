@@ -104,7 +104,6 @@ def get_cli_args():
         nargs='+',
         dest='feature_names',
         default=None,
-        type=str,
         help="If specified it will map the provided names with the indexes features. Useful when the name of the inputs/features are just number, it gives to have a clearer interpretation when displayed."
     )
 

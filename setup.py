@@ -5,7 +5,7 @@ with open('requirements.txt') as f:
 
 setup(
     name='interpretability-engine',
-    version='0.11.0',
+    version='0.11.1',
     author='Parmentier Laurent',
     author_email='laurent.parmentier@corp.ovh.com',
     packages=find_packages(),

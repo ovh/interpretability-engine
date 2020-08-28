@@ -55,7 +55,7 @@ else
 	./misc/integration-tests.sh
 endif
 
-interpretability-engine-environment:
+interpretability-engine-environment: build
 ifdef DOCKER
 	docker run -v /tmp/unsecure-share:/tmp/unsecure-share --entrypoint bash -ti interpretability-engine-environment:$(ENV_VERSION)
 endif

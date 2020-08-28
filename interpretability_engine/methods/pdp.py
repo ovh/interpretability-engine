@@ -115,14 +115,14 @@ class PdpInterpretability(BaseInterpretability):
                 label_name = label
 
                 if label_names:
-                    label_name = label_names[label]
+                    label_name = label_names[index]
 
                 ax.plot(X, averaged_predictions_per_feature[feature][label], marker=None, alpha=0.7, label=label_name, markersize=1, linewidth=.5)
 
             feature_name = feature
 
             if feature_names:
-                feature_name = feature_names[feature]
+                feature_name = feature_names[index]
 
             ax.set_xlabel("Value for feature {}".format(feature_name))
             ax.set_ylabel("PDP")
