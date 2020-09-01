@@ -111,11 +111,11 @@ class PdpInterpretability(BaseInterpretability):
 
             X = grid_values_per_feature[feature][0]
 
-            for label in labels:
+            for label_index, label in enumerate(labels):
                 label_name = label
 
                 if label_names:
-                    label_name = label_names[index]
+                    label_name = label_names[label_index]
 
                 ax.plot(X, averaged_predictions_per_feature[feature][label], marker=None, alpha=0.7, label=label_name, markersize=1, linewidth=.5)
 
